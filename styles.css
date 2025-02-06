@@ -175,3 +175,57 @@ th {
     opacity: 1;
     transform: translateY(0);
 }
+/* Dodaj razmak između gumba za brzo dodavanje štednje */
+.quick-add-buttons {
+    margin-bottom: 10px; /* Dodaje razmak između gumba i input polja */
+}
+
+.quick-add-buttons button {
+    margin-right: 10px; /* Razmak između svakog gumba */
+    padding: 10px 20px; /* Proširuje gumbove za bolji izgled */
+}
+
+/* Razmak između sekcija Add i Withdraw */
+.section .input-group {
+    margin-bottom: 20px; /* Povećava razmak između input grupa */
+}
+
+/* Proširenje gumbova za dodavanje i povlačenje štednje */
+.input-group button {
+    width: 100%; /* Gumbovi će zauzeti cijelu širinu */
+    margin-top: 10px; /* Razmak između input polja i gumba */
+    background-color: #FF69B4; /* Osvježavanje boje da odgovara ostalima */
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #FF1493; /* Tamnija nijansa na hover */
+}
+.savings-display {
+    background-image: url('piggy-bank-with-coins-clipart-original.png');  /* Postavi sliku kao pozadinu */
+    background-size: contain;  /* Slika se prilagođava veličini div-a */
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 250px;  /* Prilagodi širinu prema slici */
+    height: 300px;  /* Prilagodi visinu prema slici */
+    margin: 20px auto;  /* Centriraj cijeli blok */
+    display: flex;
+    align-items: center;  /* Vertikalno centriranje teksta */
+    justify-content: center;  /* Horizontalno centriranje teksta */
+    position: relative;
+}
+
+/* Stiliziraj tekst da bude vidljiv na slici */
+.savings-display p {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.8);  /* Blaga bijela pozadina radi bolje čitljivosti */
+    padding: 10px 15px;
+    border-radius: 15px;
+    text-align: center;
+}

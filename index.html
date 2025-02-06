@@ -94,7 +94,10 @@
                 <input type="number" id="withdraw-amount" placeholder="Enter amount">
                 <button onclick="withdrawSavings()">Withdraw</button>
             </div>
-            <p>Total Savings: €<span id="total-savings">0</span></p>
+
+            <div class="savings-display">
+                <p>Total Savings: €<span id="total-savings">0</span></p>
+            </div>
         </div>
 
         <div class="chart-container">
@@ -109,7 +112,6 @@
 
     <div id="notification" class="hidden"></div>
     <div id="savings-animation" class="hidden">🐷💰</div>
-
 
     <script src="script.js"></script>
 </body>
