@@ -47,9 +47,12 @@ function addIncome() {
     saveTransactions();
     updateUI();
     showNotification("Income added!");
+    showIncomeAnimation(); 
     incomeDescription.value = '';
     incomeAmount.value = '';
+    incomeDescription.focus();
 }
+
 
 function addExpense() {
     const description = expenseDescription.value.trim();
@@ -63,9 +66,12 @@ function addExpense() {
     saveTransactions();
     updateUI();
     showNotification("Expense added!");
+    showExpenseAnimation(); 
     expenseDescription.value = '';
     expenseAmount.value = '';
+    expenseDescription.focus();
 }
+
 function deleteTransaction(index) {
     transactions.splice(index, 1);
     saveTransactions();
@@ -95,6 +101,7 @@ function addSavings() {
     showNotification(`€${amount.toFixed(2)} added to savings!`);
     showSavingsAnimation();
     savingsInput.value = '';
+    savingsInput.focus();
 }
 
 function quickAddSavings(amount) {
@@ -257,6 +264,31 @@ function showSavingsAnimation() {
         }, 500);
     }, 1500);
 }
+function showIncomeAnimation() {
+    const animation = document.getElementById('income-animation');
+    animation.classList.remove('hidden');
+    animation.classList.add('show');
+
+    setTimeout(() => {
+        animation.classList.remove('show');
+        setTimeout(() => {
+            animation.classList.add('hidden');
+        }, 500);
+    }, 1500);
+}
+function showExpenseAnimation() {
+    const animation = document.getElementById('expense-animation');
+    animation.classList.remove('hidden');
+    animation.classList.add('show');
+
+    setTimeout(() => {
+        animation.classList.remove('show');
+        setTimeout(() => {
+            animation.classList.add('hidden');
+        }, 500);
+    }, 1500);
+}
+
 function exportToCSV() {
     if (transactions.length === 0) {
         alert('No transactions to export.');

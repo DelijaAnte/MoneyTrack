@@ -74,6 +74,12 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
+table tr:hover {
+    background-color: #f0f0f0;  
+    transition: background-color 0.3s ease; 
+}
+
+
 
 th, td {
     text-align: left;
@@ -175,26 +181,54 @@ th {
     opacity: 1;
     transform: translateY(0);
 }
-/* Dodaj razmak između gumba za brzo dodavanje štednje */
+
+#income-animation {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
+
+#income-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#expense-animation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
+
+#expense-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*poravnavanje*/
 .quick-add-buttons {
-    margin-bottom: 10px; /* Dodaje razmak između gumba i input polja */
+    margin-bottom: 10px; 
 }
-
 .quick-add-buttons button {
-    margin-right: 10px; /* Razmak između svakog gumba */
-    padding: 10px 20px; /* Proširuje gumbove za bolji izgled */
+    margin-right: 10px; 
+    padding: 10px 20px; 
 }
-
-/* Razmak između sekcija Add i Withdraw */
 .section .input-group {
-    margin-bottom: 20px; /* Povećava razmak između input grupa */
+    margin-bottom: 20px; 
 }
-
-/* Proširenje gumbova za dodavanje i povlačenje štednje */
 .input-group button {
-    width: 100%; /* Gumbovi će zauzeti cijelu širinu */
-    margin-top: 10px; /* Razmak između input polja i gumba */
-    background-color: #FF69B4; /* Osvježavanje boje da odgovara ostalima */
+    width: 100%; 
+    margin-top: 10px;
+    background-color: #FF69B4; 
     color: white;
     border: none;
     padding: 10px 0;
@@ -203,23 +237,21 @@ th {
 }
 
 .input-group button:hover {
-    background-color: #FF1493; /* Tamnija nijansa na hover */
+    background-color: #FF1493; 
 }
 .savings-display {
-    background-image: url('piggy-bank-with-coins-clipart-original.png');  /* Postavi sliku kao pozadinu */
+    background-image: url('piggy-bank-with-coins-clipart-original.png'); 
     background-size: contain;  /* Slika se prilagođava veličini div-a */
     background-repeat: no-repeat;
     background-position: center;
-    width: 250px;  /* Prilagodi širinu prema slici */
-    height: 300px;  /* Prilagodi visinu prema slici */
-    margin: 20px auto;  /* Centriraj cijeli blok */
+    width: 250px;  
+    height: 300px;  
+    margin: 20px auto;  
     display: flex;
-    align-items: center;  /* Vertikalno centriranje teksta */
-    justify-content: center;  /* Horizontalno centriranje teksta */
+    align-items: center;  
+    justify-content: center; 
     position: relative;
 }
-
-/* Stiliziraj tekst da bude vidljiv na slici */
 .savings-display p {
     font-size: 20px;
     color: #333;
