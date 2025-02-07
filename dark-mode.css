@@ -1,0 +1,61 @@
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+h1, h2 {
+    color: #e0e0e0;
+}
+
+.input-group input, 
+.input-group select {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+table {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+th {
+    background-color: #333;
+}
+
+.button-group button, 
+.clear-button-group button,
+.quick-add-buttons button {
+    background-color: #D1457B; 
+    color: white;
+}
+
+.button-group button:hover, 
+.clear-button-group button:hover,
+.quick-add-buttons button:hover {
+    background-color: #B03060;  
+}
+
+
+#notification {
+    background-color: #333;
+    color: #e0e0e0;
+}
+.input-group button {
+    background-color: #D1457B;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #B03060;  
+}

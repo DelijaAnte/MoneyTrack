@@ -8,7 +8,7 @@
 - Dodavanje štednje
 - Automatski izračun ukupnog stanja, prihoda i troškova  
 - Brisanje transakcija  
-- Spremanje podataka u lokalnu memoriju preglednika  
+- Spremanje podataka u lokalnu memoriju preglednika
 
 ## Pokretanje
 

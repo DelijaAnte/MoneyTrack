@@ -78,9 +78,6 @@ table tr:hover {
     background-color: #f0f0f0;  
     transition: background-color 0.3s ease; 
 }
-
-
-
 th, td {
     text-align: left;
     padding: 10px;
@@ -261,3 +258,40 @@ th {
     border-radius: 15px;
     text-align: center;
 }
+#dark-mode-toggle {
+    position: fixed;
+    top: 50px;
+    right: 60px;
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #FF1493;
+}
+#language-toggle {
+    position: fixed;
+    top: 100px;  /* Ispod dark mode gumba */
+    right: 60px;
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#language-toggle:hover {
+    background-color: #FF1493;
+}
+

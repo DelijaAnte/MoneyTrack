@@ -14,6 +14,7 @@ let savings = 0;
 window.onload = function() {
     loadTransactions();
     loadSavings();
+    updateLanguage(currentLanguage);
 };
 
 function loadTransactions() {
@@ -311,3 +312,26 @@ function exportToCSV() {
     link.click();
     document.body.removeChild(link);
 }
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const darkModeStylesheet = document.getElementById('dark-mode-stylesheet');
+
+// Provjera lokalne memorije za prethodno stanje
+if (localStorage.getItem('darkMode') === 'enabled') {
+    darkModeStylesheet.removeAttribute('disabled');
+    darkModeToggle.textContent = '☀️';  // Ikonica za svijetli mod
+}
+
+darkModeToggle.addEventListener('click', () => {
+    if (darkModeStylesheet.disabled) {
+        darkModeStylesheet.removeAttribute('disabled');  // Aktiviraj dark mode
+        localStorage.setItem('darkMode', 'enabled');     // Spremi postavku
+        darkModeToggle.textContent = '☀️';               // Promijeni ikonu na sunce
+    } else {
+        darkModeStylesheet.setAttribute('disabled', 'true');  // Deaktiviraj dark mode
+        localStorage.setItem('darkMode', 'disabled');        // Spremi postavku
+        darkModeToggle.textContent = '🌙';                   // Promijeni ikonu na mjesec
+    }
+});
+
+
+
