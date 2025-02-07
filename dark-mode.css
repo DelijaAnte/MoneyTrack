@@ -28,6 +28,11 @@ table {
 th {
     background-color: #333;
 }
+tbody tr:hover {
+    background-color: #2a2a2a;
+    transition: background-color 0.3s ease;
+}
+
 
 .button-group button, 
 .clear-button-group button,
@@ -42,10 +47,9 @@ th {
     background-color: #B03060;  
 }
 
-
 #notification {
-    background-color: #333;
-    color: #e0e0e0;
+    background-color: #4CAF50;
+    color: white;
 }
 .input-group button {
     background-color: #D1457B;

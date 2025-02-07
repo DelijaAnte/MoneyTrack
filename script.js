@@ -65,7 +65,7 @@ function addExpense() {
     saveTransactions();
     updateUI();
     showNotification("Expense added!");
-    showAnimation('expense-animation');  // Ovdje se koristi nova funkcija
+    showAnimation('expense-animation');
     expenseDescription.value = '';
     expenseAmount.value = '';
     expenseDescription.focus();
@@ -99,7 +99,7 @@ function addSavings() {
     saveSavings();
     updateSavingsUI();
     showNotification(`€${amount.toFixed(2)} added to savings!`);
-    showAnimation('savings-animation');  // Ovdje se koristi nova funkcija
+    showAnimation('savings-animation'); 
     savingsInput.value = '';
     savingsInput.focus();
 }
