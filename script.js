@@ -116,20 +116,25 @@ function quickAddSavings(amount) {
 function withdrawSavings() {
     const withdrawInput = document.getElementById('withdraw-amount');
     const amount = parseFloat(withdrawInput.value);
+
     if (isNaN(amount) || amount <= 0) {
-        alert('Enter a valid withdrawal amount.');
+        alert('Unesi ispravan iznos za podizanje.');
         return;
     }
+
     if (amount > savings) {
-        alert('Not enough savings.');
+        alert('Nema dovoljno štednje za podizanje.');
         return;
     }
+
     savings -= amount;
     saveSavings();
     updateSavingsUI();
-    showNotification(`€${amount.toFixed(2)} withdrawn from savings!`);
+    showNotification(`€${amount.toFixed(2)} podignuto sa štednje!`);
+    updateProgress();  // Ažuriraj progress bar nakon podizanja štednje
     withdrawInput.value = '';
 }
+
 
 function updateSavingsUI() {
     document.getElementById('total-savings').textContent = savings.toFixed(2);
@@ -321,6 +326,61 @@ darkModeToggle.addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');     
         darkModeToggle.textContent = '☀️';  
     }
+});
+
+const savingsGoalInput = document.getElementById('savings-goal');
+const progressBar = document.getElementById('progress-bar');
+const goalProgressText = document.getElementById('goal-progress-text');
+
+savingsGoalInput.addEventListener('input', updateProgress);
+document.getElementById('add-savings-btn').addEventListener('click', updateProgress);
+document.querySelectorAll('.quick-add-buttons button').forEach(button => {
+    button.addEventListener('click', updateProgress);
+});
+
+function updateProgress() {
+    const goalAmount = parseFloat(savingsGoalInput.value);
+    if (isNaN(goalAmount) || goalAmount <= 0) {
+        progressBar.style.width = '0%';
+        goalProgressText.textContent = '0% ispunjeno';
+        return;
+    }
+
+    const progress = Math.min((savings / goalAmount) * 100, 100);
+    progressBar.style.width = `${progress}%`;
+    goalProgressText.textContent = `${progress.toFixed(1)}% ispunjeno`;
+}
+
+// Automatski učitaj spremljene ciljeve iz localStorage
+window.onload = function() {
+    loadTransactions();
+    loadSavings();
+    updateLanguage(currentLanguage);
+
+    // Učitaj spremljeni cilj štednje
+    const savedGoal = localStorage.getItem('savingsGoal');
+    if (savedGoal) {
+        savingsGoalInput.value = savedGoal;
+        updateProgress();
+    }
+
+    // Učitaj opis cilja štednje
+    const savedGoalDescription = localStorage.getItem('goalDescription');
+    if (savedGoalDescription) {
+        document.getElementById('goal-description').value = savedGoalDescription;
+    }
+};
+
+
+// Spremi cilj štednje u localStorage
+savingsGoalInput.addEventListener('change', () => {
+    localStorage.setItem('savingsGoal', savingsGoalInput.value);
+    updateProgress();
+});
+
+// Spremi opis cilja štednje
+document.getElementById('goal-description').addEventListener('change', (e) => {
+    localStorage.setItem('goalDescription', e.target.value);
 });
 
 

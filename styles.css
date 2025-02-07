@@ -1,3 +1,4 @@
+/* Globalni stilovi */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -25,31 +26,36 @@ h1, h2 {
     color: #333;
 }
 
-.input-group {
-    margin-bottom: 15px;
+/* Inputi i forme */
+.input-group, .goal-container, .quick-add-container {
+    margin-bottom: 20px;
 }
 
-.input-group label {
+.input-group label, .goal-container label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #333;  /* Crni tekst */
 }
 
-.input-group input, .input-group select {
+.input-group input, 
+.input-group select, 
+.goal-container input, 
+#savings-amount, 
+#withdraw-amount, 
+#savings-goal, 
+#goal-description {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.button-group, .clear-button-group {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.button-group button, .clear-button-group button {
+/* Dugmad */
+button {
     background-color: #FF69B4;
     color: white;
     border: none;
@@ -57,14 +63,52 @@ h1, h2 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 5px;
-    width: 100%;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.button-group button:hover, .clear-button-group button:hover {
+button:hover {
     background-color: #FF1493;
 }
 
+.button-group, .clear-button-group {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.button-group button, .clear-button-group button, 
+.quick-add-buttons button, 
+#add-savings-btn, 
+#withdraw-btn {
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Quick add dugmad */
+.quick-add-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;  /* Smanjen razmak između dugmadi */
+}
+
+.quick-add-buttons button {
+    padding: 6px;  /* Smanjen padding za manju visinu dugmadi */
+    font-size: 14px;  /* Neznatno manji font za kompaktniji izgled */
+    background-color: #FF69B4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.quick-add-buttons button:hover {
+    background-color: #FF1493;
+}
+
+
+/* Tabela i prikaz transakcija */
 .table-container {
     margin-top: 20px;
     overflow-x: auto;
@@ -75,10 +119,7 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
-table tr:hover {
-    background-color: #f0f0f0;  
-    transition: background-color 0.3s ease; 
-}
+
 th, td {
     text-align: left;
     padding: 10px;
@@ -90,19 +131,15 @@ th {
     color: white;
 }
 
+table tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+/* Sažetak i stanje budžeta */
 .summary {
     text-align: center;
     margin-bottom: 20px;
-}
-
-.chart-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .positive {
@@ -115,6 +152,18 @@ th {
     font-weight: bold;
 }
 
+/* Grafikon */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Notifikacije */
 #notification {
     background-color: #4CAF50;
     color: white;
@@ -126,7 +175,7 @@ th {
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    z-index: 1000; 
+    z-index: 1000;
 }
 
 #notification.show {
@@ -137,22 +186,153 @@ th {
     display: none;
 }
 
+/* Animacije */
+#savings-animation, #income-animation, #expense-animation {
+    position: fixed;
+    bottom: 20px;
+    font-size: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
 
-.quick-add-buttons button {
+#savings-animation { right: 20px; }
+#income-animation { left: 20px; }
+#expense-animation { right: 20px; }
+
+#savings-animation.show, 
+#income-animation.show, 
+#expense-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dark mode i jezični toggle */
+#dark-mode-toggle, #language-toggle {
+    position: fixed;
+    right: 60px;
     background-color: #FF69B4;
     color: white;
     border: none;
     padding: 10px;
-    margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
-.quick-add-buttons button:hover {
+#dark-mode-toggle { top: 50px; }
+#language-toggle { top: 100px; }
+
+#dark-mode-toggle:hover, #language-toggle:hover {
     background-color: #FF1493;
 }
 
+/* Sekcija za štednju */
+.savings-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.quick-add-container, .goal-container {
+    width: 48%;
+}
+
+.goal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#savings-amount-label {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px; /* Smanjen razmak */
+    color: #333;  /* Crna boja */
+    font-weight: bold; /* Podebljano */
+}
+
+/* Progress bar */
+.progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 25px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #FF69B4;
+    transition: width 0.3s ease-in-out;
+}
+
+#goal-progress-text {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #FF1493;
+    text-align: center;
+}
+
+/* Prikaz ukupne štednje s ikonom kasice */
+.savings-display {
+    margin-top: 20px;
+    background-image: url('piggy-bank-with-coins-clipart-original.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 250px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.savings-display p {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+.goal-container label {
+    margin: 5px 0; /* Smanjen razmak iznad i ispod natpisa */
+    font-weight: bold;
+    color: #333;  /* Crna boja za konzistentnost */
+}
+
+/* Input polja - smanjen razmak između inputa */
+.goal-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px; /* Smanjen razmak između input polja */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Progress bar - prilagođen razmak */
+.progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 25px;
+    margin-top: 8px; /* Smanjen razmak iznad progress bara */
+}
+
+/* Footer */
 .made-by {
     position: fixed;
     top: 10px;
@@ -165,134 +345,3 @@ th {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-#savings-animation {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 50px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-#savings-animation.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#income-animation {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 50px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 1000;
-}
-
-#income-animation.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#expense-animation {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 50px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 1000;
-}
-
-#expense-animation.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/*poravnavanje*/
-.quick-add-buttons {
-    margin-bottom: 10px; 
-}
-.quick-add-buttons button {
-    margin-right: 10px; 
-    padding: 10px 20px; 
-}
-.section .input-group {
-    margin-bottom: 20px; 
-}
-.input-group button {
-    width: 100%; 
-    margin-top: 10px;
-    background-color: #FF69B4; 
-    color: white;
-    border: none;
-    padding: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.input-group button:hover {
-    background-color: #FF1493; 
-}
-.savings-display {
-    background-image: url('piggy-bank-with-coins-clipart-original.png'); 
-    background-size: contain;  /* Slika se prilagođava veličini div-a */
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 250px;  
-    height: 300px;  
-    margin: 20px auto;  
-    display: flex;
-    align-items: center;  
-    justify-content: center; 
-    position: relative;
-}
-.savings-display p {
-    font-size: 20px;
-    color: #333;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.8);  /* Blaga bijela pozadina radi bolje čitljivosti */
-    padding: 10px 15px;
-    border-radius: 15px;
-    text-align: center;
-}
-#dark-mode-toggle {
-    position: fixed;
-    top: 50px;
-    right: 60px;
-    background-color: #FF69B4;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-#dark-mode-toggle:hover {
-    background-color: #FF1493;
-}
-#language-toggle {
-    position: fixed;
-    top: 100px;  /* Ispod dark mode gumba */
-    right: 60px;
-    background-color: #FF69B4;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-#language-toggle:hover {
-    background-color: #FF1493;
-}
-
