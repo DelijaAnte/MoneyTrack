@@ -48,13 +48,11 @@ function addIncome() {
     saveTransactions();
     updateUI();
     showNotification("Income added!");
-    showIncomeAnimation(); 
+    showAnimation('income-animation');  
     incomeDescription.value = '';
     incomeAmount.value = '';
     incomeDescription.focus();
 }
-
-
 function addExpense() {
     const description = expenseDescription.value.trim();
     const amount = parseFloat(expenseAmount.value);
@@ -67,11 +65,12 @@ function addExpense() {
     saveTransactions();
     updateUI();
     showNotification("Expense added!");
-    showExpenseAnimation(); 
+    showAnimation('expense-animation');  // Ovdje se koristi nova funkcija
     expenseDescription.value = '';
     expenseAmount.value = '';
     expenseDescription.focus();
 }
+
 
 function deleteTransaction(index) {
     transactions.splice(index, 1);
@@ -100,17 +99,18 @@ function addSavings() {
     saveSavings();
     updateSavingsUI();
     showNotification(`€${amount.toFixed(2)} added to savings!`);
-    showSavingsAnimation();
+    showAnimation('savings-animation');  // Ovdje se koristi nova funkcija
     savingsInput.value = '';
     savingsInput.focus();
 }
+
 
 function quickAddSavings(amount) {
     savings += amount;
     saveSavings();
     updateSavingsUI();
     showNotification(`€${amount.toFixed(2)} added to savings!`);
-    showSavingsAnimation();
+    showAnimation('savings-animation'); 
 }
 
 function withdrawSavings() {
@@ -203,14 +203,18 @@ function updateChart() {
     const data = [];
     const backgroundColors = [];
 
+    // Preuzmi prijevode iz translations objekta
+    const incomeLabel = translations[currentLanguage].income;
+    const expenseLabel = translations[currentLanguage].expense;
+
     if (incomeTotal > 0) {
-        labels.push('Income');
+        labels.push(incomeLabel);
         data.push(incomeTotal);
         backgroundColors.push('#4CAF50'); 
     }
 
     if (expenseTotal > 0) {
-        labels.push('Expenses');
+        labels.push(expenseLabel);
         data.push(expenseTotal);
         backgroundColors.push('#FF4C4C'); 
     }
@@ -253,32 +257,9 @@ function updateChart() {
     });
 }
 
-function showSavingsAnimation() {
-    const animation = document.getElementById('savings-animation');
-    animation.classList.remove('hidden');
-    animation.classList.add('show');
 
-    setTimeout(() => {
-        animation.classList.remove('show');
-        setTimeout(() => {
-            animation.classList.add('hidden');
-        }, 500);
-    }, 1500);
-}
-function showIncomeAnimation() {
-    const animation = document.getElementById('income-animation');
-    animation.classList.remove('hidden');
-    animation.classList.add('show');
-
-    setTimeout(() => {
-        animation.classList.remove('show');
-        setTimeout(() => {
-            animation.classList.add('hidden');
-        }, 500);
-    }, 1500);
-}
-function showExpenseAnimation() {
-    const animation = document.getElementById('expense-animation');
+function showAnimation(animationId) {
+    const animation = document.getElementById(animationId);
     animation.classList.remove('hidden');
     animation.classList.add('show');
 
@@ -315,21 +296,20 @@ function exportToCSV() {
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const darkModeStylesheet = document.getElementById('dark-mode-stylesheet');
 
-// Provjera lokalne memorije za prethodno stanje
 if (localStorage.getItem('darkMode') === 'enabled') {
     darkModeStylesheet.removeAttribute('disabled');
-    darkModeToggle.textContent = '☀️';  // Ikonica za svijetli mod
+    darkModeToggle.textContent = '☀️';  
 }
 
 darkModeToggle.addEventListener('click', () => {
     if (darkModeStylesheet.disabled) {
-        darkModeStylesheet.removeAttribute('disabled');  // Aktiviraj dark mode
-        localStorage.setItem('darkMode', 'enabled');     // Spremi postavku
-        darkModeToggle.textContent = '☀️';               // Promijeni ikonu na sunce
+        darkModeStylesheet.removeAttribute('disabled');  
+        localStorage.setItem('darkMode', 'enabled');    
+        darkModeToggle.textContent = '☀️'; 
     } else {
-        darkModeStylesheet.setAttribute('disabled', 'true');  // Deaktiviraj dark mode
-        localStorage.setItem('darkMode', 'disabled');        // Spremi postavku
-        darkModeToggle.textContent = '🌙';                   // Promijeni ikonu na mjesec
+        darkModeStylesheet.setAttribute('disabled', 'true'); 
+        localStorage.setItem('darkMode', 'disabled');     
+        darkModeToggle.textContent = '🌙';               
     }
 });
 

@@ -81,29 +81,29 @@ function updateLanguage(lang) {
 
     // Prevođenje unutar tablice transakcija
     document.querySelectorAll('#transaction-history td:nth-child(4)').forEach(cell => {
-        if (cell.textContent === 'Income') {
+        if (cell.textContent === 'Income' || cell.textContent === 'Prihod') {
             cell.textContent = lang === 'hr' ? 'Prihod' : 'Income';
-        } else if (cell.textContent === 'Expense') {
+        } else if (cell.textContent === 'Expense' || cell.textContent === 'Trošak') {
             cell.textContent = lang === 'hr' ? 'Trošak' : 'Expense';
         }
     });
-
+    
     document.querySelectorAll('#transaction-history td:nth-child(2)').forEach(cell => {
-        if (cell.textContent === 'Income') {
+        if (cell.textContent === 'Income' || cell.textContent === 'Prihod') {
             cell.textContent = lang === 'hr' ? 'Prihod' : 'Income';
-        } else if (cell.textContent === 'Housing') {
+        } else if (cell.textContent === 'Housing' || cell.textContent === 'Stanovanje') {
             cell.textContent = lang === 'hr' ? 'Stanovanje' : 'Housing';
-        } else if (cell.textContent === 'Food') {
+        } else if (cell.textContent === 'Food' || cell.textContent === 'Hrana') {
             cell.textContent = lang === 'hr' ? 'Hrana' : 'Food';
-        } else if (cell.textContent === 'Transportation') {
+        } else if (cell.textContent === 'Transportation' || cell.textContent === 'Prijevoz') {
             cell.textContent = lang === 'hr' ? 'Prijevoz' : 'Transportation';
-        } else if (cell.textContent === 'Entertainment') {
+        } else if (cell.textContent === 'Entertainment' || cell.textContent === 'Zabava') {
             cell.textContent = lang === 'hr' ? 'Zabava' : 'Entertainment';
-        } else if (cell.textContent === 'Others') {
+        } else if (cell.textContent === 'Others' || cell.textContent === 'Ostalo') {
             cell.textContent = lang === 'hr' ? 'Ostalo' : 'Others';
         }
     });
-
+    
     document.querySelectorAll('#transaction-history button').forEach(button => {
         button.textContent = lang === 'hr' ? 'Obriši' : 'Delete';
     });
@@ -126,6 +126,7 @@ function updateLanguage(lang) {
     document.getElementById('download-csv-btn').textContent = t.downloadCSV;
 
     translateExpenseCategories(lang);
+    updateChart();
 }
 
 function translateExpenseCategories(lang) {
