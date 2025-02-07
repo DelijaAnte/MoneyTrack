@@ -188,37 +188,38 @@ function showNotification(message) {
 function updateChart() {
     const ctx = document.getElementById('expenseChart').getContext('2d');
 
-    let incomeTotal = 0;
-    let expenseTotal = 0;
-
-    transactions.forEach(transaction => {
-        if (transaction.type === 'Income') {
-            incomeTotal += transaction.amount;
-        } else if (transaction.type === 'Expense') {
-            expenseTotal += transaction.amount;
-        }
-    });
+    const incomeTransactions = transactions.filter(t => t.type === 'Income');
+    const expenseTransactions = transactions.filter(t => t.type === 'Expense');
 
     const labels = [];
     const data = [];
     const backgroundColors = [];
 
-    // Preuzmi prijevode iz translations objekta
+    // Prijevodi
     const incomeLabel = translations[currentLanguage].income;
     const expenseLabel = translations[currentLanguage].expense;
 
-    if (incomeTotal > 0) {
-        labels.push(incomeLabel);
-        data.push(incomeTotal);
-        backgroundColors.push('#4CAF50'); 
-    }
+    // Funkcija za generiranje nijansi boja
+    const generateColor = (baseHue, index, total) => {
+        const lightness = 50 + (index / total) * 30; // Povećava svjetlinu sa svakim unosom
+        return `hsl(${baseHue}, 70%, ${lightness}%)`;
+    };
 
-    if (expenseTotal > 0) {
-        labels.push(expenseLabel);
-        data.push(expenseTotal);
-        backgroundColors.push('#FF4C4C'); 
-    }
+    // Dodavanje prihoda s nijansama zelene
+    incomeTransactions.forEach((transaction, index) => {
+        labels.push(`${incomeLabel}: ${transaction.description}`);
+        data.push(transaction.amount);
+        backgroundColors.push(generateColor(120, index, incomeTransactions.length)); // 120 = zelena
+    });
 
+    // Dodavanje troškova s nijansama crvene
+    expenseTransactions.forEach((transaction, index) => {
+        labels.push(`${expenseLabel}: ${transaction.description}`);
+        data.push(transaction.amount);
+        backgroundColors.push(generateColor(0, index, expenseTransactions.length)); // 0 = crvena
+    });
+
+    // Ako nema podataka, sakrij graf
     if (data.length === 0) {
         document.querySelector('.chart-container').style.display = 'none';
         return;
@@ -226,10 +227,12 @@ function updateChart() {
         document.querySelector('.chart-container').style.display = 'block';
     }
 
+    // Uništi prethodni graf ako postoji
     if (window.myChart) {
         window.myChart.destroy();
     }
 
+    // Kreiraj novi pie chart
     window.myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -256,6 +259,7 @@ function updateChart() {
         }
     });
 }
+
 
 
 function showAnimation(animationId) {
