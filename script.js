@@ -260,6 +260,8 @@ function updateChart() {
 
 function showAnimation(animationId) {
     const animation = document.getElementById(animationId);
+    if (animation.classList.contains('show')) return; 
+    
     animation.classList.remove('hidden');
     animation.classList.add('show');
 
@@ -278,38 +280,42 @@ function exportToCSV() {
     }
 
     let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Description,Category,Amount,Type\n";  // Header
+    csvContent += "Description,Category,Amount,Type\n";
 
     transactions.forEach(transaction => {
         const row = `${transaction.description},${transaction.category},${transaction.amount.toFixed(2)},${transaction.type}`;
         csvContent += row + "\n";
     });
 
+    const date = new Date().toISOString().replace(/[:.]/g, '-');  // Format za naziv datoteke
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "transactions.csv");
-    document.body.appendChild(link);  // Required for Firefox
+    link.setAttribute("download", `transactions_${date}.csv`);
+    document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 }
+
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const darkModeStylesheet = document.getElementById('dark-mode-stylesheet');
 
 if (localStorage.getItem('darkMode') === 'enabled') {
     darkModeStylesheet.removeAttribute('disabled');
-    darkModeToggle.textContent = '☀️';  
+    darkModeToggle.textContent = '🌙';  
+} else {
+    darkModeToggle.textContent = '☀️';
 }
 
 darkModeToggle.addEventListener('click', () => {
     if (darkModeStylesheet.disabled) {
         darkModeStylesheet.removeAttribute('disabled');  
         localStorage.setItem('darkMode', 'enabled');    
-        darkModeToggle.textContent = '☀️'; 
+        darkModeToggle.textContent = '🌙'; 
     } else {
         darkModeStylesheet.setAttribute('disabled', 'true'); 
         localStorage.setItem('darkMode', 'disabled');     
-        darkModeToggle.textContent = '🌙';               
+        darkModeToggle.textContent = '☀️';  
     }
 });
 
