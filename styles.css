@@ -88,13 +88,13 @@ button:hover {
 .quick-add-buttons {
     display: flex;
     flex-direction: column;
-    gap: 2px;  /* Smanjen razmak između dugmadi */
+    gap: 2px;  
     margin-top: 10px;
 }
 
 .quick-add-buttons button {
-    padding: 6px;  /* Smanjen padding za manju visinu dugmadi */
-    font-size: 14px;  /* Neznatno manji font za kompaktniji izgled */
+    padding: 6px;  
+    font-size: 14px;  
     background-color: #FF69B4;
     color: white;
     font-weight: bold;
@@ -107,7 +107,6 @@ button:hover {
 .quick-add-buttons button:hover {
     background-color: #FF1493;
 }
-
 
 /* Tabela i prikaz transakcija */
 .table-container {
@@ -235,7 +234,7 @@ table tr:hover {
 .savings-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;  /* Poravnava vrhove elemenata */
+    align-items: flex-start;
     gap: 20px;
 }
 
@@ -243,14 +242,8 @@ table tr:hover {
     width: 48%;
 }
 
-/* Provjeri margine na labelama i smanji ih ako treba */
 #savings-amount-label, #savings-goal-label {
-    margin-top: 0;  /* Uklanja nepotrebni gornji razmak */
-}
-
-
-.quick-add-container, .goal-container {
-    width: 48%;
+    margin-top: 0;
 }
 
 .goal-container {
@@ -262,9 +255,9 @@ table tr:hover {
 #savings-amount-label {
     text-align: center;
     font-size: 16px;
-    margin-bottom: 10px; /* Smanjen razmak */
-    color: #333;  /* Crna boja */
-    font-weight: bold; /* Podebljano */
+    margin-bottom: 10px; 
+    color: #333;  
+    font-weight: bold; 
 }
 
 /* Progress bar */
@@ -294,7 +287,7 @@ table tr:hover {
 /* Prikaz ukupne štednje s ikonom kasice */
 .savings-display {
     margin-top: 20px;
-    background-image: url('piggy-bank-with-coins-clipart-original.png');
+    background-image: url('piggy-bank-with-coins-clipart-original.png');  /* Vraćena slika */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -312,35 +305,10 @@ table tr:hover {
     font-size: 20px;
     color: #333;
     font-weight: bold;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8);  /* Svijetla pozadina iza teksta za bolju vidljivost */
     padding: 10px 15px;
     border-radius: 15px;
     text-align: center;
-}
-.goal-container label {
-    margin: 5px 0; /* Smanjen razmak iznad i ispod natpisa */
-    font-weight: bold;
-    color: #333;  /* Crna boja za konzistentnost */
-}
-
-/* Input polja - smanjen razmak između inputa */
-.goal-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 8px; /* Smanjen razmak između input polja */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-/* Progress bar - prilagođen razmak */
-.progress-bar-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-    height: 25px;
-    margin-top: 8px; /* Smanjen razmak iznad progress bara */
 }
 
 /* Footer */
