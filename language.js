@@ -20,7 +20,10 @@ const translations = {
         balance: "Balance",
         clearAll: "Clear All",
         downloadCSV: "Download CSV",
-        delete: "Delete"
+        delete: "Delete",
+        savingGoal: "Saving goal (€)",
+        savingFor: "What are you saving for?",
+        goalProgress: "% complete"
     },
     hr: {
         income: "Prihod",
@@ -43,9 +46,13 @@ const translations = {
         balance: "Stanje",
         clearAll: "Obriši sve",
         downloadCSV: "Preuzmi CSV",
-        delete: "Obriši"
+        delete: "Obriši",
+        savingGoal: "Cilj štednje (€)",
+        savingFor: "Za što štedite?",
+        goalProgress: "% ispunjeno"
     }
 };
+
 
 const languageToggle = document.getElementById('language-toggle');
 let currentLanguage = localStorage.getItem('language') || 'en';
@@ -121,6 +128,14 @@ function updateLanguage(lang) {
     document.getElementById('add-savings-btn').textContent = lang === 'hr' ? 'Dodaj štednju' : 'Add Savings';
     document.getElementById('withdraw-btn').textContent = lang === 'hr' ? 'Podigni' : 'Withdraw';
     document.querySelector('.savings-display p').innerHTML = `${t.totalSavings}: €<span id="total-savings">${savings.toFixed(2)}</span>`;
+
+    document.querySelector('label[for="savings-goal"]').textContent = t.savingGoal;
+    document.querySelector('label[for="goal-description"]').textContent = t.savingFor;
+
+    // Prikaz napretka cilja štednje
+    const goalProgressText = document.getElementById('goal-progress-text');
+    const currentProgress = parseFloat(goalProgressText.textContent) || 0;
+    goalProgressText.textContent = `${currentProgress.toFixed(1)}${t.goalProgress}`;
 
     document.getElementById('clear-all-btn').textContent = t.clearAll;
     document.getElementById('download-csv-btn').textContent = t.downloadCSV;
