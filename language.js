@@ -53,14 +53,26 @@ const translations = {
     }
 };
 
-
 const languageToggle = document.getElementById('language-toggle');
 let currentLanguage = localStorage.getItem('language') || 'en';
 
+// Postavi tekst dugmeta prilikom učitavanja stranice da prikazuje trenutni jezik
+languageToggle.textContent = currentLanguage.toUpperCase();
+
+// Postavi jezik pri učitavanju stranice
+document.addEventListener('DOMContentLoaded', () => {
+    updateLanguage(currentLanguage);
+});
+
 languageToggle.addEventListener('click', () => {
+    // Prebaci jezik
     currentLanguage = currentLanguage === 'en' ? 'hr' : 'en';
     localStorage.setItem('language', currentLanguage);
+    
+    // Ažuriraj tekst dugmeta da prikazuje trenutni jezik
     languageToggle.textContent = currentLanguage.toUpperCase();
+    
+    // Ažuriraj sadržaj stranice
     updateLanguage(currentLanguage);
 });
 
@@ -110,7 +122,7 @@ function updateLanguage(lang) {
             cell.textContent = lang === 'hr' ? 'Ostalo' : 'Others';
         }
     });
-    
+
     document.querySelectorAll('#transaction-history button').forEach(button => {
         button.textContent = lang === 'hr' ? 'Obriši' : 'Delete';
     });
@@ -134,9 +146,11 @@ function updateLanguage(lang) {
 
     // Prikaz napretka cilja štednje
     const goalProgressText = document.getElementById('goal-progress-text');
-    const currentProgress = parseFloat(goalProgressText.textContent) || 0;
+    const progressMatch = goalProgressText.textContent.match(/\d+(\.\d+)?/);
+    const currentProgress = progressMatch ? parseFloat(progressMatch[0]) : 0;
     goalProgressText.textContent = `${currentProgress.toFixed(1)}${t.goalProgress}`;
 
+    // Gumbi za čišćenje i eksport
     document.getElementById('clear-all-btn').textContent = t.clearAll;
     document.getElementById('download-csv-btn').textContent = t.downloadCSV;
 
