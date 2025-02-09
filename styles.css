@@ -287,7 +287,7 @@ table tr:hover {
 /* Prikaz ukupne štednje s ikonom kasice */
 .savings-display {
     margin-top: 20px;
-    background-image: url('piggy-bank-with-coins-clipart-original.png');  /* Vraćena slika */
+    background-image: url('images/piggy-bank-with-coins-clipart-original.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
