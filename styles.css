@@ -89,6 +89,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 2px;  /* Smanjen razmak između dugmadi */
+    margin-top: 10px;
 }
 
 .quick-add-buttons button {
@@ -234,9 +235,19 @@ table tr:hover {
 .savings-container {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;  /* Poravnava vrhove elemenata */
     gap: 20px;
-    flex-wrap: wrap;
 }
+
+.quick-add-container, .goal-container {
+    width: 48%;
+}
+
+/* Provjeri margine na labelama i smanji ih ako treba */
+#savings-amount-label, #savings-goal-label {
+    margin-top: 0;  /* Uklanja nepotrebni gornji razmak */
+}
+
 
 .quick-add-container, .goal-container {
     width: 48%;
