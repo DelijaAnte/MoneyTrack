@@ -57,19 +57,28 @@ function addExpense() {
     const description = expenseDescription.value.trim();
     const amount = parseFloat(expenseAmount.value);
     const category = expenseCategory.value;
+
     if (!description || isNaN(amount) || amount <= 0) {
         alert('Enter a valid expense.');
         return;
     }
+
     transactions.push({ description, amount, category, type: 'Expense' });
     saveTransactions();
     updateUI();
     showNotification("Expense added!");
+
+    const currentBalance = parseFloat(balance.textContent);
+    if (currentBalance < 0) {
+        showNotification("Warning: Your balance is negative!");
+    }
+
     showAnimation('expense-animation');
     expenseDescription.value = '';
     expenseAmount.value = '';
     expenseDescription.focus();
 }
+
 
 function deleteTransaction(index) {
     transactions.splice(index, 1);
@@ -84,7 +93,6 @@ function clearAll() {
     localStorage.clear();
     updateUI();
     updateSavingsUI();
-    updateChart();
     document.getElementById('savings-goal').value = '';
     document.getElementById('goal-description').value = '';
     updateProgress();
@@ -331,7 +339,7 @@ const savingsGoalInput = document.getElementById('savings-goal');
 const progressBar = document.getElementById('progress-bar');
 const goalProgressText = document.getElementById('goal-progress-text');
 
-savingsGoalInput.addEventListener('input', updateProgress);
+savingsGoalInput.addEventListener('blur', updateProgress);
 document.getElementById('add-savings-btn').addEventListener('click', updateProgress);
 document.querySelectorAll('.quick-add-buttons button').forEach(button => {
     button.addEventListener('click', updateProgress);

@@ -131,7 +131,8 @@ function updateLanguage(lang) {
     document.getElementById('budget-summary-title').textContent = t.budgetSummary;
     document.querySelector('#total-income').parentElement.innerHTML = `${t.totalIncome}: €<span id="total-income">${totalIncome.textContent}</span>`;
     document.querySelector('#total-expenses').parentElement.innerHTML = `${t.totalExpenses}: €<span id="total-expenses">${totalExpenses.textContent}</span>`;
-    document.querySelector('#balance').parentElement.innerHTML = `${t.balance}: <span id="balance">${balance.textContent}</span>`;
+    document.getElementById('balance-label').childNodes[0].textContent = `${t.balance}: `;
+
 
     // Štednja
     document.getElementById('savings-title').textContent = t.savings;
