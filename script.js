@@ -71,13 +71,13 @@ function addExpense() {
     expenseDescription.focus();
 }
 
-
 function deleteTransaction(index) {
     transactions.splice(index, 1);
     saveTransactions();
     updateUI();
     showNotification("Transaction deleted!");
 }
+
 function clearAll() {
     transactions = [];
     savings = 0;
@@ -85,6 +85,9 @@ function clearAll() {
     updateUI();
     updateSavingsUI();
     updateChart();
+    document.getElementById('savings-goal').value = '';
+    document.getElementById('goal-description').value = '';
+    updateProgress();
     showNotification("All data cleared!");
 }
 
@@ -103,7 +106,6 @@ function addSavings() {
     savingsInput.value = '';
     savingsInput.focus();
 }
-
 
 function quickAddSavings(amount) {
     savings += amount;
@@ -134,7 +136,6 @@ function withdrawSavings() {
     updateProgress();  // Ažuriraj progress bar nakon podizanja štednje
     withdrawInput.value = '';
 }
-
 
 function updateSavingsUI() {
     document.getElementById('total-savings').textContent = savings.toFixed(2);
@@ -200,11 +201,9 @@ function updateChart() {
     const data = [];
     const backgroundColors = [];
 
-    // Prijevodi
     const incomeLabel = translations[currentLanguage].income;
     const expenseLabel = translations[currentLanguage].expense;
 
-    // Funkcija za generiranje nijansi boja
     const generateColor = (baseHue, index, total) => {
         const lightness = 50 + (index / total) * 30; // Povećava svjetlinu sa svakim unosom
         return `hsl(${baseHue}, 70%, ${lightness}%)`;

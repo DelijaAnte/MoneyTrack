@@ -35,7 +35,7 @@ h1, h2 {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;  /* Crni tekst */
+    color: #333;
 }
 
 .input-group input, 
@@ -305,7 +305,7 @@ table tr:hover {
     font-size: 20px;
     color: #333;
     font-weight: bold;
-    background: rgba(255, 255, 255, 0.8);  /* Svijetla pozadina iza teksta za bolju vidljivost */
+    background: rgba(255, 255, 255, 0.8); 
     padding: 10px 15px;
     border-radius: 15px;
     text-align: center;
