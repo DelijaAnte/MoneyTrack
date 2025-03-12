@@ -395,5 +395,26 @@ document.getElementById('goal-description').addEventListener('change', (e) => {
     localStorage.setItem('goalDescription', e.target.value);
 });
 
+let sortAscending = true; // Početno stanje sortiranja (uzlazno)
+
+function sortTransactions() {
+    // Sortiraj po amount (prihodi i troškovi zajedno)
+    transactions.sort((a, b) => {
+        return sortAscending ? a.amount - b.amount : b.amount - a.amount;
+    });
+
+    sortAscending = !sortAscending; // Promjena redoslijeda za sljedeći klik
+
+    // Ažuriraj tekst dugmeta
+    document.getElementById('sort-transactions-btn').textContent = 
+        sortAscending ? "Sort by Amount ⬆" : "Sort by Amount ⬇";
+
+    updateUI(); // Ažuriranje prikaza tablice
+}
+
+// Poveži dugme sa funkcijom
+document.getElementById('sort-transactions-btn').addEventListener('click', sortTransactions);
+
+
 
 
