@@ -88,6 +88,10 @@ function deleteTransaction(index) {
 }
 
 function clearAll() {
+    if (!confirm("Are you sure you want to delete all data? This cannot be undone!")) {
+        return;
+    }
+    
     transactions = [];
     savings = 0;
     localStorage.clear();
@@ -98,6 +102,7 @@ function clearAll() {
     updateProgress();
     showNotification("All data cleared!");
 }
+
 
 function addSavings() {
     const savingsInput = document.getElementById('savings-amount');

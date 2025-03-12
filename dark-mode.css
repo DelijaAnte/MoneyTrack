@@ -12,7 +12,6 @@ h1, h2, label {
     color: #ffffff !important;
 }
 
-/* Inputi u tamnom modu */
 .input-group input, 
 .input-group select,
 .goal-container input, 
@@ -20,12 +19,11 @@ h1, h2, label {
 #withdraw-amount, 
 #savings-goal, 
 #goal-description {
-    background-color: #1e1e1e;  /* Crna pozadina */
-    color: #ffffff;            /* Bijeli tekst */
-    border: 1px solid #555;    /* Tamni rub */
+    background-color: #1e1e1e;  
+    color: #ffffff; 
+    border: 1px solid #555; 
 }
 
-/* Tabela */
 table {
     background-color: #1e1e1e;
     color: #e0e0e0;
@@ -40,7 +38,6 @@ tbody tr:hover {
     transition: background-color 0.3s ease;
 }
 
-/* Dugmad */
 .button-group button, 
 .clear-button-group button,
 .quick-add-buttons button,
@@ -58,13 +55,11 @@ tbody tr:hover {
     background-color: #8B1C48;  
 }
 
-/* Notifikacije */
 #notification {
     background-color: #4CAF50;
     color: white;
 }
 
-/* Progress bar */
 .progress-bar-container {
     background-color: #333;  
 }
@@ -77,14 +72,13 @@ tbody tr:hover {
     color: #D1457B;  
     font-weight: bold;
 }
-/* Samo promjena boje za Delete dugmad u Transaction History */
+
 #transaction-history button {
-    background-color: #B03060;  /* Tamno roza boja za dark mode */
+    background-color: #B03060; 
     color: white;
 }
 
-/* Hover efekt za Delete dugmad */
 #transaction-history button:hover {
-    background-color: #8B1C48;  /* Još tamnija roza na hover */
+    background-color: #8B1C48; 
 }
 
