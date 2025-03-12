@@ -155,6 +155,11 @@ function updateLanguage(lang) {
     document.getElementById('clear-all-btn').textContent = t.clearAll;
     document.getElementById('download-csv-btn').textContent = t.downloadCSV;
 
+    document.getElementById('sort-transactions-btn').textContent = 
+    sortAscending ? (lang === 'hr' ? "Sortiraj po iznosu ⬆" : "Sort by Amount ⬆") 
+                  : (lang === 'hr' ? "Sortiraj po iznosu ⬇" : "Sort by Amount ⬇");
+
+
     translateExpenseCategories(lang);
     updateChart();
 }
