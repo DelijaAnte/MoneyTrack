@@ -14,7 +14,7 @@ export function updateUI() {
     row.classList.add("transaction-row");
     row.innerHTML = `
       <td>${transaction.description}</td>
-      <td>${transaction.category}</td>
+      <td>${transaction.type === "Income" ? "-" : transaction.category}</td>
       <td>€${transaction.amount.toFixed(2)}</td>
       <td>${transaction.type}</td>
       <td><button class="delete-btn" data-index="${index}">Delete</button></td>
@@ -42,7 +42,8 @@ export function updateUI() {
 }
 
 export function updateSavingsUI() {
-  document.getElementById("total-savings").textContent = savings.toFixed(2);
+  document.getElementById("total-savings").textContent =
+    "€" + savings.toFixed(2);
 }
 
 export function showNotification(message) {
@@ -138,10 +139,12 @@ export function updateProgress() {
   const goalAmount = parseFloat(savingsGoalInput.value);
   if (isNaN(goalAmount) || goalAmount <= 0) {
     progressBar.style.width = "0%";
-    goalProgressText.textContent = "0% ispunjeno";
+    goalProgressText.textContent = "0% complete";
+    if (typeof updateTexts === "function") updateTexts();
     return;
   }
   const progress = Math.min((savingsValue / goalAmount) * 100, 100);
   progressBar.style.width = `${progress}%`;
-  goalProgressText.textContent = `${progress.toFixed(1)}% ispunjeno`;
+  goalProgressText.textContent = `${progress.toFixed(1)}% complete`;
+  if (typeof updateTexts === "function") updateTexts();
 }
