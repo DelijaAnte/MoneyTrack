@@ -1,151 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Money Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet" disabled>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="dark-mode.css"
+      id="dark-mode-stylesheet"
+      disabled
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/piggy-bank_888383.png">
-</head>
-<body>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/piggy-bank_888383.png" />
+  </head>
+  <body>
     <div class="made-by">Made by Ante Delija</div>
     <button id="dark-mode-toggle">🌙</button>
     <button id="language-toggle">HR</button>
 
     <div class="container">
-        <h1>MoneyTrack</h1>
+      <h1>MoneyTrack</h1>
 
-        <!-- Dio za prihode -->
-        <div class="section">
-            <h2 id="income-title">Income</h2>
-            <div class="input-group">
-                <label for="income-description" id="income-description-label">Description</label>
-                <input type="text" id="income-description" placeholder="e.g. Salary">
-            </div>
-            <div class="input-group">
-                <label for="income-amount" id="income-amount-label">Amount (€)</label>
-                <input type="number" id="income-amount" placeholder="e.g. 1000">
-            </div>
-            <div class="button-group">
-                <button id="add-income-btn" onclick="addIncome()">Add Income</button>
-            </div>
+      <!-- Dio za prihode -->
+      <div class="section">
+        <h2 id="income-title">Income</h2>
+        <div class="input-group">
+          <label for="income-description" id="income-description-label"
+            >Description</label
+          >
+          <input
+            type="text"
+            id="income-description"
+            placeholder="e.g. Salary"
+          />
         </div>
-
-        <!-- Dio za troškove -->
-        <div class="section">
-            <h2 id="expense-title">Expenses</h2>
-            <div class="input-group">
-                <label for="expense-description" id="expense-description-label">Description</label>
-                <input type="text" id="expense-description" placeholder="e.g. Rent">
-            </div>
-            <div class="input-group">
-                <label for="expense-category" id="expense-category-label">Category</label>
-                <select id="expense-category">
-                    <option value="Housing">Housing</option>
-                    <option value="Food">Food</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="expense-amount" id="expense-amount-label">Amount (€)</label>
-                <input type="number" id="expense-amount" placeholder="e.g. 1000">
-            </div>
-            <div class="button-group">
-                <button id="add-expense-btn" onclick="addExpense()">Add Expense</button>
-            </div>
+        <div class="input-group">
+          <label for="income-amount" id="income-amount-label">Amount (€)</label>
+          <input type="number" id="income-amount" placeholder="e.g. 1000" />
         </div>
-
-        <!-- Povijest transakcija -->
-        <div class="table-container">
-            <h2 id="transaction-history-title">Transaction History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th id="table-description-header">Description</th>
-                        <th id="table-category-header">Category</th>
-                        <th id="table-amount-header">Amount (€)</th>
-                        <th id="table-type-header">Type</th>
-                        <th id="table-action-header">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="transaction-history"></tbody>
-            </table>
-            <button id="sort-transactions-btn">Sort by Amount ⬆</button>
+        <div class="button-group">
+          <button id="add-income-btn">Add Income</button>
         </div>
+      </div>
 
-        <!-- Sažetak budžeta -->
-        <div class="summary">
-            <h2 id="budget-summary-title">Budget Summary</h2>
-            <p id="total-income-label">Total Income: €<span id="total-income">0</span></p>
-            <p id="total-expenses-label">Total Expenses: €<span id="total-expenses">0</span></p>
-            <p id="balance-label">Balance: <span id="balance">0</span></p>
+      <!-- Dio za troškove -->
+      <div class="section">
+        <h2 id="expense-title">Expenses</h2>
+        <div class="input-group">
+          <label for="expense-description" id="expense-description-label"
+            >Description</label
+          >
+          <input type="text" id="expense-description" placeholder="e.g. Rent" />
         </div>
-
-        <!-- Pie chart -->
-        <div class="chart-container">
-            <canvas id="expenseChart"></canvas>
+        <div class="input-group">
+          <label for="expense-category" id="expense-category-label"
+            >Category</label
+          >
+          <select id="expense-category">
+            <option value="Housing">Housing</option>
+            <option value="Food">Food</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
+        <div class="input-group">
+          <label for="expense-amount" id="expense-amount-label"
+            >Amount (€)</label
+          >
+          <input type="number" id="expense-amount" placeholder="e.g. 1000" />
+        </div>
+        <div class="button-group">
+          <button id="add-expense-btn">Add Expense</button>
+        </div>
+      </div>
 
-        <!-- Sekcija za štednju -->
-    <div class="section">
+      <!-- Povijest transakcija -->
+      <div class="table-container">
+        <h2 id="transaction-history-title">Transaction History</h2>
+        <table>
+          <thead>
+            <tr>
+              <th id="table-description-header">Description</th>
+              <th id="table-category-header">Category</th>
+              <th id="table-amount-header">Amount (€)</th>
+              <th id="table-type-header">Type</th>
+              <th id="table-action-header">Action</th>
+            </tr>
+          </thead>
+          <tbody id="transaction-history"></tbody>
+        </table>
+        <button id="sort-transactions-btn">Sort by Amount ⬆</button>
+      </div>
+
+      <!-- Sažetak budžeta -->
+      <div class="summary">
+        <h2 id="budget-summary-title">Budget Summary</h2>
+        <p id="total-income-label">
+          Total Income: €<span id="total-income">0</span>
+        </p>
+        <p id="total-expenses-label">
+          Total Expenses: €<span id="total-expenses">0</span>
+        </p>
+        <p id="balance-label">Balance: <span id="balance">0</span></p>
+      </div>
+
+      <!-- Pie chart -->
+      <div class="chart-container">
+        <canvas id="expenseChart"></canvas>
+      </div>
+
+      <!-- Sekcija za štednju -->
+      <div class="section">
         <h2 id="savings-title">Štednja</h2>
 
         <div class="savings-container">
-        <!-- Lijeva strana: Dugmad za brzo dodavanje i podizanje štednje -->
-            <div class="quick-add-container">
-                <label for="savings-amount" id="savings-amount-label">Dodaj u štednju (€)</label>
-                <div class="quick-add-buttons">
-                    <button id="quick-add-1" onclick="quickAddSavings(1)">+1€</button>
-                    <button id="quick-add-2" onclick="quickAddSavings(2)">+2€</button>
-                    <button id="quick-add-5" onclick="quickAddSavings(5)">+5€</button>
-                </div>
-                <input type="number" id="savings-amount" placeholder="Enter amount">
-                <button id="add-savings-btn" onclick="addSavings()">Dodaj štednju</button>
+          <!-- Lijeva strana: Dugmad za brzo dodavanje i podizanje štednje -->
+          <div class="quick-add-container">
+            <label for="savings-amount" id="savings-amount-label"
+              >Dodaj u štednju (€)</label
+            >
+            <div class="quick-add-buttons">
+              <button id="quick-add-1">+1€</button>
+              <button id="quick-add-2">+2€</button>
+              <button id="quick-add-5">+5€</button>
+            </div>
+            <input
+              type="number"
+              id="savings-amount"
+              placeholder="Enter amount"
+            />
+            <button id="add-savings-btn">Dodaj štednju</button>
 
             <!-- Dio za podizanje štednje -->
-                <div class="input-group">
-                    <label for="withdraw-amount" id="withdraw-amount-label">Podigni sa štednje (€)</label>
-                    <input type="number" id="withdraw-amount" placeholder="Enter amount">
-                    <button id="withdraw-btn" onclick="withdrawSavings()">Podigni</button>
-                </div>
+            <div class="input-group">
+              <label for="withdraw-amount" id="withdraw-amount-label"
+                >Podigni sa štednje (€)</label
+              >
+              <input
+                type="number"
+                id="withdraw-amount"
+                placeholder="Enter amount"
+              />
+              <button id="withdraw-btn">Podigni</button>
+            </div>
+          </div>
+
+          <!-- Desna strana: Cilj štednje i progress bar -->
+          <div class="goal-container">
+            <label for="savings-goal" id="savings-goal-label"
+              >Saving goal (€)</label
+            >
+            <input
+              type="number"
+              id="savings-goal"
+              placeholder="Enter goal amount"
+            />
+
+            <label for="goal-description" id="goal-description-label"
+              >What are you saving for?</label
+            >
+            <input
+              type="text"
+              id="goal-description"
+              placeholder="e.g. New phone"
+            />
+
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="progress-bar"></div>
             </div>
 
-        <!-- Desna strana: Cilj štednje i progress bar -->
-            <div class="goal-container">
-                <label for="savings-goal" id="savings-goal-label">Saving goal (€)</label>
-                <input type="number" id="savings-goal" placeholder="Enter goal amount">
-
-                <label for="goal-description" id="goal-description-label">What are you saving for?</label>
-                <input type="text" id="goal-description" placeholder="e.g. New phone">
-
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-
-                <p id="goal-progress-text">0% complete</p>
-            </div>
+            <p id="goal-progress-text">0% complete</p>
+          </div>
         </div>
 
-    <!-- Prikaz ukupne štednje s ikonom kasice -->
+        <!-- Prikaz ukupne štednje s ikonom kasice -->
         <div class="savings-display">
-            <p id="total-savings-label">Ukupna štednja: €<span id="total-savings">0</span></p>
+          <p id="total-savings-label">
+            Ukupna štednja: €<span id="total-savings">0</span>
+          </p>
         </div>
-    </div>
+      </div>
 
-
-
-        <!-- Gumbi za čišćenje i eksport -->
-        <div class="clear-button-group">
-            <button id="clear-all-btn" onclick="clearAll()">Clear All</button>
-            <button id="download-csv-btn" onclick="exportToCSV()">Download CSV</button>
-        </div>
+      <!-- Gumbi za čišćenje i eksport -->
+      <div class="clear-button-group">
+        <button id="clear-all-btn">Clear All</button>
+        <button id="download-csv-btn">Download CSV</button>
+      </div>
     </div>
 
     <!-- Notifikacije i animacije -->
@@ -155,7 +199,6 @@
     <div id="savings-animation" class="hidden">🐷💰</div>
 
     <script src="language.js"></script>
-    <script src="script.js"></script>
-
-</body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>

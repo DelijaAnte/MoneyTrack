@@ -1,83 +1,94 @@
 body {
-    background-color: #121212;
-    color: #e0e0e0;
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 .container {
-    background-color: #1e1e1e;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-h1, h2, label {
-    color: #ffffff !important;
+h1,
+h2,
+label {
+  color: #ffffff !important;
 }
 
-.input-group input, 
+.input-group input,
 .input-group select,
-.goal-container input, 
-#savings-amount, 
-#withdraw-amount, 
-#savings-goal, 
+.goal-container input,
+#savings-amount,
+#withdraw-amount,
+#savings-goal,
 #goal-description {
-    background-color: #1e1e1e;  
-    color: #ffffff; 
-    border: 1px solid #555; 
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #555;
 }
 
 table {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
 }
 
 th {
-    background-color: #333;
+  background-color: #333;
 }
 
 tbody tr:hover {
-    background-color: #2a2a2a;
-    transition: background-color 0.3s ease;
+  background-color: #2a2a2a;
+  transition: background-color 0.3s ease;
 }
 
-.button-group button, 
+.button-group button,
 .clear-button-group button,
 .quick-add-buttons button,
 #add-savings-btn,
 #withdraw-btn {
-    background-color: #B03060;  
-    color: white;
+  background-color: #b03060;
+  color: white;
 }
 
-.button-group button:hover, 
+.button-group button:hover,
 .clear-button-group button:hover,
 .quick-add-buttons button:hover,
 #add-savings-btn:hover,
 #withdraw-btn:hover {
-    background-color: #8B1C48;  
+  background-color: #8b1c48;
 }
 
 #notification {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 .progress-bar-container {
-    background-color: #333;  
+  background-color: #333;
 }
 
 .progress-bar {
-    background-color: #D1457B;  
+  background-color: #d1457b;
 }
 
 #goal-progress-text {
-    color: #D1457B;  
-    font-weight: bold;
+  color: #d1457b;
+  font-weight: bold;
 }
 
 #transaction-history button {
-    background-color: #B03060; 
-    color: white;
+  background-color: #b03060;
+  color: white;
 }
 
 #transaction-history button:hover {
-    background-color: #8B1C48; 
+  background-color: #8b1c48;
+}
+
+#sort-transactions-btn {
+  background-color: #b03060;
+  color: white;
+}
+
+#sort-transactions-btn:hover {
+  background-color: #8b1c48;
 }
