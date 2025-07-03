@@ -1,3 +1,6 @@
+/* =====================
+   Osnovni elementi
+   ===================== */
 body {
   background-color: #121212;
   color: #e0e0e0;
@@ -8,12 +11,28 @@ body {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+.container h1 {
+  color: #f90dc6 !important;
+  text-shadow: 0 0 10px rgba(249, 13, 198, 0.5),
+    0 0 20px rgba(249, 13, 198, 0.3), 0 0 30px rgba(249, 13, 198, 0.1);
+  transition: text-shadow 0.3s ease;
+  text-align: center;
+}
+
+.container h1:hover {
+  text-shadow: 0 0 15px rgba(249, 13, 198, 0.7),
+    0 0 25px rgba(249, 13, 198, 0.4), 0 0 35px rgba(249, 13, 198, 0.2);
+}
+
 h1,
 h2,
 label {
   color: #ffffff !important;
 }
 
+/* =====================
+   Inputi i forme
+   ===================== */
 .input-group input,
 .input-group select,
 .goal-container input,
@@ -22,10 +41,13 @@ label {
 #savings-goal,
 #goal-description {
   background-color: #1e1e1e;
-  color: #ffffff;
   border: 1px solid #555;
+  color: #ffffff;
 }
 
+/* =====================
+   Tablice
+   ===================== */
 table {
   background-color: #1e1e1e;
   color: #e0e0e0;
@@ -40,6 +62,9 @@ tbody tr:hover {
   transition: background-color 0.3s ease;
 }
 
+/* =====================
+   Gumbi
+   ===================== */
 .button-group button,
 .clear-button-group button,
 .quick-add-buttons button,
@@ -55,24 +80,6 @@ tbody tr:hover {
 #add-savings-btn:hover,
 #withdraw-btn:hover {
   background-color: #8b1c48;
-}
-
-#notification {
-  background-color: #4caf50;
-  color: white;
-}
-
-.progress-bar-container {
-  background-color: #333;
-}
-
-.progress-bar {
-  background-color: #d1457b;
-}
-
-#goal-progress-text {
-  color: #d1457b;
-  font-weight: bold;
 }
 
 #transaction-history button {
@@ -91,4 +98,25 @@ tbody tr:hover {
 
 #sort-transactions-btn:hover {
   background-color: #8b1c48;
+}
+
+/* =====================
+   Posebni elementi
+   ===================== */
+#notification {
+  background-color: #4caf50;
+  color: white;
+}
+
+.progress-bar-container {
+  background-color: #333;
+}
+
+.progress-bar {
+  background-color: #d1457b;
+}
+
+#goal-progress-text {
+  color: #d1457b;
+  font-weight: bold;
 }
