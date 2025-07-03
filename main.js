@@ -17,6 +17,26 @@ import {
 } from "./ui.js";
 import { setupDarkMode } from "./darkmode.js";
 
+// =====================
+//  Helper Functions
+// =====================
+function isValidAmount(val) {
+  return !isNaN(val) && val > 0;
+}
+
+function resetInput(id) {
+  const el = document.getElementById(id);
+  if (el) el.value = "";
+}
+
+function focusInput(id) {
+  const el = document.getElementById(id);
+  if (el) el.focus();
+}
+
+// =====================
+//  DOMContentLoaded
+// =====================
 window.addEventListener("DOMContentLoaded", () => {
   setupDarkMode();
   updateUI();
@@ -24,51 +44,63 @@ window.addEventListener("DOMContentLoaded", () => {
   updateChart();
   updateProgress();
 
+  // =====================
+  //  Prihodi
+  // =====================
   document.getElementById("add-income-btn").addEventListener("click", () => {
     const desc = document.getElementById("income-description").value.trim();
     const amount = parseFloat(document.getElementById("income-amount").value);
-    if (!desc || isNaN(amount) || amount <= 0) {
+    if (!desc || !isValidAmount(amount)) {
       showNotification("Enter a valid income.");
       return;
     }
     addIncome(desc, amount);
     showNotification("Income added!");
     showAnimation("income-animation");
-    document.getElementById("income-description").value = "";
-    document.getElementById("income-amount").value = "";
-    document.getElementById("income-description").focus();
+    resetInput("income-description");
+    resetInput("income-amount");
+    focusInput("income-description");
   });
+
+  // =====================
+  //  Troškovi
+  // =====================
   document.getElementById("add-expense-btn").addEventListener("click", () => {
     const desc = document.getElementById("expense-description").value.trim();
     const amount = parseFloat(document.getElementById("expense-amount").value);
     const category = document.getElementById("expense-category").value;
-    if (!desc || isNaN(amount) || amount <= 0) {
+    if (!desc || !isValidAmount(amount)) {
       showNotification("Enter a valid expense.");
       return;
     }
     addExpense(desc, amount, category);
     showNotification("Expense added!");
     showAnimation("expense-animation");
-    document.getElementById("expense-description").value = "";
-    document.getElementById("expense-amount").value = "";
-    document.getElementById("expense-description").focus();
+    resetInput("expense-description");
+    resetInput("expense-amount");
+    focusInput("expense-description");
   });
+
+  // =====================
+  //  Štednja
+  // =====================
   document.getElementById("add-savings-btn").addEventListener("click", () => {
     const amount = parseFloat(document.getElementById("savings-amount").value);
-    if (isNaN(amount) || amount <= 0) {
+    if (!isValidAmount(amount)) {
       showNotification("Enter a valid savings amount.");
       return;
     }
     addSavings(amount);
     showNotification(`€${amount.toFixed(2)} added to savings!`);
     showAnimation("savings-animation");
-    document.getElementById("savings-amount").value = "";
-    document.getElementById("savings-amount").focus();
+    resetInput("savings-amount");
+    focusInput("savings-amount");
     updateProgress();
   });
+
   document.getElementById("withdraw-btn").addEventListener("click", () => {
     const amount = parseFloat(document.getElementById("withdraw-amount").value);
-    if (isNaN(amount) || amount <= 0) {
+    if (!isValidAmount(amount)) {
       showNotification("Unesi ispravan iznos za podizanje.");
       return;
     }
@@ -79,9 +111,27 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       showNotification(`€${amount.toFixed(2)} podignuto sa štednje!`);
       updateProgress();
-      document.getElementById("withdraw-amount").value = "";
+      resetInput("withdraw-amount");
     });
   });
+
+  // =====================
+  //  Quick Add Štednja
+  // =====================
+  [1, 2, 5].forEach((val) => {
+    document
+      .getElementById(`quick-add-${val}`)
+      .addEventListener("click", () => {
+        addSavings(val);
+        showNotification(`€${val.toFixed(2)} added to savings!`);
+        showAnimation("savings-animation");
+        updateProgress();
+      });
+  });
+
+  // =====================
+  //  Brisanje svih podataka
+  // =====================
   document.getElementById("clear-all-btn").addEventListener("click", () => {
     if (
       !confirm(
@@ -91,11 +141,15 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     clearAllTransactions();
     clearSavings();
-    document.getElementById("savings-goal").value = "";
-    document.getElementById("goal-description").value = "";
+    resetInput("savings-goal");
+    resetInput("goal-description");
     updateProgress();
     showNotification("All data cleared!");
   });
+
+  // =====================
+  //  Sortiranje transakcija
+  // =====================
   document
     .getElementById("sort-transactions-btn")
     .addEventListener("click", () => {
@@ -104,26 +158,10 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("sort-transactions-btn").textContent =
         window.sortAscending ? "Sort by Amount ⬆" : "Sort by Amount ⬇";
     });
-  // Quick add savings
-  document.getElementById("quick-add-1").addEventListener("click", () => {
-    addSavings(1);
-    showNotification("€1.00 added to savings!");
-    showAnimation("savings-animation");
-    updateProgress();
-  });
-  document.getElementById("quick-add-2").addEventListener("click", () => {
-    addSavings(2);
-    showNotification("€2.00 added to savings!");
-    showAnimation("savings-animation");
-    updateProgress();
-  });
-  document.getElementById("quick-add-5").addEventListener("click", () => {
-    addSavings(5);
-    showNotification("€5.00 added to savings!");
-    showAnimation("savings-animation");
-    updateProgress();
-  });
-  // Export to CSV
+
+  // =====================
+  //  Export u CSV
+  // =====================
   document.getElementById("download-csv-btn").addEventListener("click", () => {
     import("./transactions.js").then((mod) => {
       const transactions = mod.transactions;
@@ -149,7 +187,10 @@ window.addEventListener("DOMContentLoaded", () => {
       document.body.removeChild(link);
     });
   });
-  // Progress bar i cilj štednje
+
+  // =====================
+  //  Progress bar i cilj štednje
+  // =====================
   document
     .getElementById("savings-goal")
     .addEventListener("change", updateProgress);
